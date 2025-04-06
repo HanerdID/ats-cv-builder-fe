@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "placeholder.com"],
+    domains: ["localhost", "placeholder.com", "randomuser.me"],
   },
   env: {
     NEXT_PUBLIC_API_URL:

@@ -1,4 +1,4 @@
-// src/app/templates/page.tsx
+// src/appglobe.svgsx
 'use client';
 
 import { useState } from 'react';
@@ -15,7 +15,7 @@ const templates = [
     name: 'Professional',
     description: 'Clean and traditional design perfect for corporate environments',
     atsScore: 95,
-    thumbnail: '/templates/professional.png',
+    thumbnail: 'globe.svg',
     colors: ['#2A4365', '#3182CE', '#4299E1', '#63B3ED'],
     popular: true,
     bestFor: ['Banking', 'Finance', 'Legal', 'Corporate'],
@@ -25,7 +25,7 @@ const templates = [
     name: 'Modern',
     description: 'Contemporary layout with a perfect balance of creativity and professionalism',
     atsScore: 92,
-    thumbnail: '/templates/modern.png',
+    thumbnail: 'globe.svg',
     colors: ['#285E61', '#38B2AC', '#4FD1C5', '#81E6D9'],
     popular: true,
     bestFor: ['Tech', 'Marketing', 'Design', 'Startups'],
@@ -35,7 +35,7 @@ const templates = [
     name: 'Minimal',
     description: 'Simple, elegant design that lets your content shine',
     atsScore: 97,
-    thumbnail: '/templates/minimal.png',
+    thumbnail: 'globe.svg',
     colors: ['#1A202C', '#2D3748', '#4A5568', '#718096'],
     popular: false,
     bestFor: ['Academia', 'Research', 'Executive', 'Consulting'],
@@ -45,7 +45,7 @@ const templates = [
     name: 'Creative',
     description: 'Bold design for creative industries while maintaining ATS compatibility',
     atsScore: 88,
-    thumbnail: '/templates/creative.png',
+    thumbnail: 'globe.svg',
     colors: ['#702459', '#B83280', '#ED64A6', '#F687B3'],
     popular: false,
     bestFor: ['Graphic Design', 'Art Direction', 'UI/UX', 'Film & Media'],
@@ -55,7 +55,7 @@ const templates = [
     name: 'Executive',
     description: 'Sophisticated design for senior professionals and executives',
     atsScore: 94,
-    thumbnail: '/templates/executive.png',
+    thumbnail: 'globe.svg',
     colors: ['#744210', '#975A16', '#D69E2E', '#ECC94B'],
     popular: true,
     bestFor: ['C-Level', 'Senior Management', 'Board Positions', 'Directors'],
@@ -65,7 +65,7 @@ const templates = [
     name: 'Technical',
     description: 'Optimized for technical roles with skills-focused layout',
     atsScore: 96,
-    thumbnail: '/templates/technical.png',
+    thumbnail: 'globe.svg',
     colors: ['#1A365D', '#2B6CB0', '#4299E1', '#90CDF4'],
     popular: false,
     bestFor: ['Software Development', 'Engineering', 'Data Science', 'IT'],

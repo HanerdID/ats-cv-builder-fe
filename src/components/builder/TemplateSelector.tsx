@@ -1,4 +1,4 @@
-// src/components/builder/TemplateSelector.tsx
+// src/components/builderglobe.svgsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -8,38 +8,38 @@ const templates = [
     id: "professional",
     name: "Professional",
     description: "Clean and traditional format for corporate environments",
-    thumbnail: "/templates/professional.png",
+    thumbnail: "globe.svg",
   },
   {
     id: "modern",
     name: "Modern",
     description:
       "Contemporary design with a perfect balance of creativity and professionalism",
-    thumbnail: "/templates/modern.png",
+    thumbnail: "globe.svg",
   },
   {
     id: "minimal",
     name: "Minimal",
     description: "Simple, elegant design that lets your content shine",
-    thumbnail: "/templates/minimal.png",
+    thumbnail: "globe.svg",
   },
   {
     id: "creative",
     name: "Creative",
     description: "Bold design for creative industries",
-    thumbnail: "/templates/creative.png",
+    thumbnail: "globe.svg",
   },
   {
     id: "executive",
     name: "Executive",
     description: "Sophisticated design for senior professionals",
-    thumbnail: "/templates/executive.png",
+    thumbnail: "globe.svg",
   },
   {
     id: "technical",
     name: "Technical",
     description: "Optimized for technical roles with skills-focused layout",
-    thumbnail: "/templates/technical.png",
+    thumbnail: "globe.svg",
   },
 ];
 

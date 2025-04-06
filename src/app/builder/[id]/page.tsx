@@ -22,13 +22,115 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 
+interface ResumeData {
+  title: string;
+  template: string;
+  content: {
+    personal: {
+      name: string;
+      email: string;
+      phone: string;
+      location: string;
+      website: string;
+      linkedin: string;
+      github: string;
+    };
+    summary: {
+      text: string;
+    };
+    experience: Array<{
+      company?: string;
+      position?: string;
+      location?: string;
+      startDate?: string;
+      endDate?: string;
+      current?: boolean;
+      description?: string;
+      achievements?: string[];
+    }>;
+    education: Array<{
+      institution?: string;
+      degree?: string;
+      fieldOfStudy?: string;
+      location?: string;
+      startDate?: string;
+      endDate?: string;
+      current?: boolean;
+      description?: string;
+      graduationYear?: string;
+      gpa?: string;
+    }>;
+    skills: {
+      categories?: Array<{
+        name?: string;
+        skills?: Array<
+          | {
+              name?: string;
+              level?: number;
+            }
+          | string
+        >;
+      }>;
+      keywords?: string[];
+    };
+    projects?: Array<{
+      title?: string;
+      description?: string;
+      startDate?: string;
+      endDate?: string;
+      current?: boolean;
+      url?: string;
+      technologies?: string[];
+    }>;
+    certifications?: Array<{
+      name?: string;
+      issuer?: string;
+      date?: string;
+      expiryDate?: string;
+      credentialID?: string;
+      url?: string;
+    }>;
+    languages?: Array<{
+      language?: string;
+      proficiency?: string;
+    }>;
+    customSections?: Array<{
+      title?: string;
+      content?: string;
+    }>;
+  };
+  layout: {
+    sectionOrder: string[];
+    visibleSections: Map<string, boolean> | Record<string, boolean>;
+  };
+  style?: {
+    colors?: {
+      primary?: string;
+      secondary?: string;
+      accent?: string;
+    };
+    fontSize?: string;
+    fontFamily?: string;
+    spacing?: string;
+  };
+  atsData?: {
+    lastScore?: number;
+    targetJobTitle?: string;
+    jobDescription?: string;
+    keywordMatches?: string[];
+    missedKeywords?: string[];
+    suggestions?: string[];
+    lastAnalysis?: string;
+    passesATS?: boolean;
+  };
+}
+
 export default function BuilderPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const params = useParams();
   const resumeId = params.id as string;
 
-  const [resumeData, setResumeData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [activeTab, setActiveTab] = useState("content"); // 'content', 'design', 'preview', 'analyze'
@@ -39,6 +141,7 @@ export default function BuilderPage() {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [previewScale, setPreviewScale] = useState(0.8);
   const [isExporting, setIsExporting] = useState(false);
+  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -78,7 +181,7 @@ export default function BuilderPage() {
             receivedData.layout.visibleSections = sectionsMap;
           }
 
-          setResumeData(receivedData);
+          setResumeData(receivedData as ResumeData);
           setSelectedTemplate(receivedData.template || "professional");
         } catch (error) {
           console.error("Error fetching resume:", error);
@@ -91,7 +194,7 @@ export default function BuilderPage() {
       fetchResume();
     } else if (resumeId === "new") {
       // Initialize with empty resume template
-      setResumeData({
+      const emptyResume: ResumeData = {
         title: "Untitled Resume",
         template: "professional",
         content: {
@@ -139,7 +242,9 @@ export default function BuilderPage() {
             ["languages", true],
           ]),
         },
-      });
+      };
+
+      setResumeData(emptyResume);
       setIsLoading(false);
     }
   }, [status, resumeId, router]);
@@ -388,7 +493,7 @@ export default function BuilderPage() {
     return resumeData.layout.visibleSections[sectionId];
   };
 
-  if (isLoading || status === "loading") {
+  if (isLoading || status === "loading" || !resumeData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <LoadingSpinner />
